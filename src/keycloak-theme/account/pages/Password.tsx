@@ -105,12 +105,12 @@ export default function LogoutConfirm(props: PageProps<Extract<KcContext, { page
             </div>
           </div>
 
-          <div className="">
+          <div className="my-button-wrapper">
             <div id="kc-form-buttons" className="">
               <div>
                 <button
                   type="submit"
-                  className="my-button-primary"
+                  className="my-button-primary my-button-ring"
                   name="submitAction"
                   value="Save"
                 >

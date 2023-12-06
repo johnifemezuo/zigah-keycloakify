@@ -104,7 +104,7 @@ export default function Template(props: TemplateProps<KcContext, I18n>) {
             <div className="container">
                 <div className="bs-sidebar my-sidebar col-sm-3">
                     <ul>
-                        <li className={clsx(active === "account" && "active")}>
+                        <li className={clsx(active === "account" && "my-active-link")}>
                             <a href={url.accountUrl}>{msg("account")}</a>
                         </li>
                         {features.passwordUpdateSupported && (
