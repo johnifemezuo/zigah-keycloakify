@@ -1,12 +1,14 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
 // Copy pasted from: https://github.com/InseeFrLab/keycloakify/blob/main/src/login/Template.tsx
 
-import { clsx } from "keycloakify/tools/clsx";
-import { usePrepareTemplate } from "keycloakify/lib/usePrepareTemplate";
 import { type TemplateProps } from "keycloakify/account/TemplateProps";
 import { useGetClassName } from "keycloakify/account/lib/useGetClassName";
-import type { KcContext } from "./kcContext";
-import type { I18n } from "./i18n";
+import { usePrepareTemplate } from "keycloakify/lib/usePrepareTemplate";
 import { assert } from "keycloakify/tools/assert";
+import { clsx } from "keycloakify/tools/clsx";
+import { Logo } from "./assets/Logo";
+import type { I18n } from "./i18n";
+import type { KcContext } from "./kcContext";
 
 export default function Template(props: TemplateProps<KcContext, I18n>) {
     const { kcContext, i18n, doUseDefaultCss, active, classes, children } = props;
@@ -35,7 +37,26 @@ export default function Template(props: TemplateProps<KcContext, I18n>) {
     return (
         <>
             <header className="navbar navbar-default navbar-pf navbar-main header">
-                <nav className="navbar" role="navigation">
+                <div className="my-nav ">
+                    <Logo className="my-logo" />
+
+                    <h1 className="my-nav-title">Manage Account</h1>
+                    <div className="my-nav-links">
+                        <a className="my-nav-link" href={url.getLogoutUrl()}>{msg("doSignOut")}</a>
+
+                        {referrer?.url && (
+                                    <li className="my-nav-link">
+                                        <a href={referrer.url} id="referrer">
+                                            {msg("backTo", referrer.name)}
+                                        </a>
+                                    </li>
+                                )}
+                    </div>
+                </div>
+
+
+                {/* No longer in use */}
+                <nav style={{display: "none"}} className="navbar" role="navigation">
                     <div className="navbar-header">
                         <div className="container">
                             <h1 className="navbar-title">Keycloak</h1>
@@ -81,13 +102,13 @@ export default function Template(props: TemplateProps<KcContext, I18n>) {
             </header>
 
             <div className="container">
-                <div className="bs-sidebar col-sm-3">
+                <div className="bs-sidebar my-sidebar col-sm-3">
                     <ul>
                         <li className={clsx(active === "account" && "active")}>
                             <a href={url.accountUrl}>{msg("account")}</a>
                         </li>
                         {features.passwordUpdateSupported && (
-                            <li className={clsx(active === "password" && "active")}>
+                            <li className={clsx(active === "password" && "my-active-link")}>
                                 <a href={url.passwordUrl}>{msg("password")}</a>
                             </li>
                         )}

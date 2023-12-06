@@ -1,9 +1,162 @@
+  @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap');
+
 /* 
 If you use global CSS like we do here(not recommended) 
 Be mindful that the CSS of the login theme may clash with the CSS of the account theme in Storybook (and only in storybook).
 This is why I made sure to use .my-root-account-class instead of .my-root-class that is already used in the login theme.
 */
 
+body {
+  font-family: "Poppins", Inter, sans-serif;
+  margin: 0;
+  height: 100%;
+  width: 100%;
+}
+
 .my-root-account-class {
-	background: url(./assets/background.svg) no-repeat center center fixed;
+  background: white;
+}
+
+.bs-sidebar {
+  background-color: #f3f5fe;
+}
+
+.my-active-link {
+  background-color: #d2d5f7;
+  box-shadow: var(--tw-ring-inset) 0 0 0 calc(2px + var(--tw-ring-offset-width))
+    var(--tw-ring-color);
+  --ring-offset-width: 2px;
+  box-shadow: 0 0 0 var(--ring-offset-width) var(--ring-offset-color), var(--ring-shadow);
+  --ring-shadow: 0 0 #9189ed69 0 0 #9189ed53;
+  --ring-offset-color: #fff;
+  --ring-color: #d2d5f7;
+  --ring-offset-shadow: var(--tw-ring-inset) 0 0 0 var(--tw-ring-offset-width)
+    var(--tw-ring-offset-color);
+  --ring-shadow: var(--tw-ring-inset) 0 0 0 calc(2px + var(--tw-ring-offset-width))
+    var(--tw-ring-color);
+  --tw-ring-offset-shadow: var(--ring-offset-shadow);
+  --tw-ring-shadow: var(--ring-shadow);
+  --tw-ring-opacity: 1;
+  --tw-ring-color: rgba(82, 82, 82, var(--tw-ring-opacity));
+  --tw-ring-inset: var(--tw-empty, /*!*/ /*!*/);
+  --tw-ring-offset-width: 1px;
+  --tw-ring-offset-color: #fff;
+  --tw-ring-color: #9189ed69;
+  --tw-ring-offset-shadow: var(--tw-ring-inset) 0 0 0 var(--tw-ring-offset-width)
+    var(--tw-ring-offset-color);
+  --tw-ring-shadow: var(--tw-ring-inset) 0 0 0 calc(1px + var(--tw-ring-offset-width))
+    var(--tw-ring-color);
+  --tw-ring-opacity: 1;
+  --tw-ring-color: rgba(82, 82, 82, var(--tw-ring-opacity));
+  --tw-ring-inset: var(--tw-empty, /*!*/ /*!*/);
+  --tw-ring-offset-width: 1px;
+  --tw-ring-offset-color: #fff;
+  --tw-ring-color: #9189ed69;
+  --tw-ring-offset-shadow: var(--tw-ring-inset) 0 0 0 var(--tw-ring-offset-width)
+    var(--tw-ring-offset-color);
+  --tw-ring-shadow: var(--tw-ring-inset) 0 0;
+  border-radius: 4px;
+}
+
+.my-nav {
+  background-color: #f3f5fe;
+  padding: 5px 22px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.my-logo-wrapper {
+  width: 90px;
+}
+
+.flex--items {
+  display: flex;
+  align-items: center;
+}
+
+.my-sidebar {
+  background-color: #f3f5fe;
+  padding: 15px;
+}
+.my-sidebar li a {
+  border: none !important;
+  padding: 6px 0px;
+}
+
+.my-nav-title {
+  font-weight: 500;
+  color: #333;
+  font-size: 20px;
+  margin-top: 0px;
+  margin-bottom: 0px;
+}
+.my-nav-link {
+  font-weight: 500;
+  color: #212e82;
+  font-size: 14px;
+  margin-top: 0px;
+  margin-left: 9px;
+}
+.my-nav-links {
+  display: flex;
+  align-items: center;
+}
+
+.my-page-title h2 {
+  font-weight: 600;
+  color: #333;
+  font-size: 20px;
+}
+
+.my-button-primary {
+  background-color: #212e82;
+  color: #fff;
+  border: none;
+  padding: 9px 15px;
+  border-radius: 6px;
+  width: 100%;
+  font-size: 14px;
+}
+
+/* input styling */
+
+.my-label {
+  font-size: 13px;
+  line-height: 1.25rem;
+  font-weight: 400;
+  text-align: left;
+  color: #656464;
+}
+.my-input {
+  width: 100%;
+  padding: 7px 15px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 14px;
+  margin-bottom: 10px;
+}
+
+.my-flex-input {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.my-input:focus {
+  outline: none;
+  border-color: #212e82;
+}
+
+@media (max-width: 767px) {
+  .my-flex-input {
+    grid-template-columns: 1fr;
+  }
+
+  .my-logo {
+    width: 90px;
+  }
+
+  .my-nav-title {
+    display: none;
+  }
 }

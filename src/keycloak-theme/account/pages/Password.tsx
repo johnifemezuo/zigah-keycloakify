@@ -20,86 +20,106 @@ export default function LogoutConfirm(props: PageProps<Extract<KcContext, { page
     const { msg } = i18n;
 
     return (
-        <Template {...{ kcContext, i18n, doUseDefaultCss, classes }} active="password">
-            <div className="row">
-                <div className="col-md-10">
-                    <h2>{msg("changePasswordHtmlTitle")}</h2>
-                </div>
-                <div className="col-md-2 subtitle">
-                    <span className="subtitle">{msg("allFieldsRequired")}</span>
-                </div>
+      <Template {...{ kcContext, i18n, doUseDefaultCss, classes }} active="password">
+        <div className="row flex--items">
+          <div className="col-md-10 my-page-title">
+            <h2 className="">{msg("changePasswordHtmlTitle")}</h2>
+          </div>
+          <div className="">
+            <span className="my-label">{msg("allFieldsRequired")}</span>
+          </div>
+        </div>
+
+        <form action={url.passwordUrl} className="form-horizontal" method="post">
+          <input
+            type="text"
+            id="username"
+            name="username"
+            value={account.username ?? ""}
+            autoComplete="username"
+            readOnly
+            style={{ display: "none" }}
+          />
+
+          {password.passwordSet && (
+            <div className="my-input-container">
+              <div className="my-label-wrapper">
+                <label htmlFor="password" className="my-label">
+                  {msg("password")}
+                </label>
+              </div>
+
+              <div className="my-input-wrapper">
+                <input
+                  type="password"
+                  className="my-input"
+                  id="password"
+                  name="password"
+                  autoFocus
+                  autoComplete="current-password"
+                  placeholder="Password"
+                />
+              </div>
+            </div>
+          )}
+
+          <div className="my-flex-input">
+            <input type="hidden" id="stateChecker" name="stateChecker" value={stateChecker} />
+
+            <div className="my-input-container">
+              <div className="my-label-wrapper">
+                <label htmlFor="password-new" className="my-label">
+                  {msg("passwordNew")}
+                </label>
+              </div>
+
+              <div className="my-input-wrapper">
+                <input
+                  type="password"
+                  className="my-input"
+                  id="password-new"
+                  name="password-new"
+                  autoComplete="new-password"
+                  placeholder="New password"
+                />
+              </div>
             </div>
 
-            <form action={url.passwordUrl} className="form-horizontal" method="post">
+            <div className="my-input-container">
+              <div className="my-label-wrapper">
+                <label htmlFor="password-confirm" className="my-label">
+                  {msg("passwordConfirm")}
+                </label>
+              </div>
+
+              <div className="my-input-wrapper">
                 <input
-                    type="text"
-                    id="username"
-                    name="username"
-                    value={account.username ?? ""}
-                    autoComplete="username"
-                    readOnly
-                    style={{ "display": "none" }}
+                  type="password"
+                  className="my-input"
+                  id="password-confirm"
+                  name="password-confirm"
+                  autoComplete="new-password"
+                  placeholder="Confirm password"
                 />
+              </div>
+            </div>
+          </div>
 
-                {password.passwordSet && (
-                    <div className="form-group">
-                        <div className="col-sm-2 col-md-2">
-                            <label htmlFor="password" className="control-label">
-                                {msg("password")}
-                            </label>
-                        </div>
-
-                        <div className="col-sm-10 col-md-10">
-                            <input type="password" className="form-control" id="password" name="password" autoFocus autoComplete="current-password" />
-                        </div>
-                    </div>
-                )}
-
-                <input type="hidden" id="stateChecker" name="stateChecker" value={stateChecker} />
-
-                <div className="form-group">
-                    <div className="col-sm-2 col-md-2">
-                        <label htmlFor="password-new" className="control-label">
-                            {msg("passwordNew")}
-                        </label>
-                    </div>
-
-                    <div className="col-sm-10 col-md-10">
-                        <input type="password" className="form-control" id="password-new" name="password-new" autoComplete="new-password" />
-                    </div>
-                </div>
-
-                <div className="form-group">
-                    <div className="col-sm-2 col-md-2">
-                        <label htmlFor="password-confirm" className="control-label two-lines">
-                            {msg("passwordConfirm")}
-                        </label>
-                    </div>
-
-                    <div className="col-sm-10 col-md-10">
-                        <input type="password" className="form-control" id="password-confirm" name="password-confirm" autoComplete="new-password" />
-                    </div>
-                </div>
-
-                <div className="form-group">
-                    <div id="kc-form-buttons" className="col-md-offset-2 col-md-10 submit">
-                        <div>
-                            <button
-                                type="submit"
-                                className={clsx(
-                                    getClassName("kcButtonClass"),
-                                    getClassName("kcButtonPrimaryClass"),
-                                    getClassName("kcButtonLargeClass")
-                                )}
-                                name="submitAction"
-                                value="Save"
-                            >
-                                {msg("doSave")}
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </form>
-        </Template>
+          <div className="">
+            <div id="kc-form-buttons" className="">
+              <div>
+                <button
+                  type="submit"
+                  className="my-button-primary"
+                  name="submitAction"
+                  value="Save"
+                >
+                  {msg("doSave")}
+                </button>
+              </div>
+            </div>
+          </div>
+        </form>
+      </Template>
     );
 }
