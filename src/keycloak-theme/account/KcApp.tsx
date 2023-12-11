@@ -8,8 +8,8 @@ import Account from "./pages/Account";
 const Template = lazy(() => import("./Template"));
 
 const Password = lazy(() => import("./pages/Password"));
-const MyExtraPage1 = lazy(() => import("./pages/MyExtraPage1"));
-const MyExtraPage2 = lazy(() => import("./pages/MyExtraPage2"));
+const Authenticator = lazy(() => import("./pages/Authenticator"));
+const Sessions = lazy(() => import("./pages/Sessions"));
 const Fallback = lazy(()=> import("keycloakify/account"));
 
 const classes: PageProps<any, any>["classes"] = {
@@ -32,8 +32,14 @@ export default function KcApp(props: { kcContext: KcContext; }) {
                 switch (kcContext.pageId) {
                     case "password.ftl": return <Password {...{ kcContext, i18n, Template, classes }} doUseDefaultCss={true} />;
                     case "account.ftl": return <Account {...{ kcContext, i18n, Template, classes }} doUseDefaultCss={true} />;
-                    case "my-extra-page-1.ftl": return <MyExtraPage1 {...{ kcContext, i18n, Template, classes }} doUseDefaultCss={true} />;
-                    case "my-extra-page-2.ftl": return <MyExtraPage2 {...{ kcContext, i18n, Template, classes }} doUseDefaultCss={true} />;
+                    case "authenticator.ftl": return (
+                      <Authenticator
+                        {...{ kcContext, i18n, Template, classes }}
+                        doUseDefaultCss={true}
+                      />
+                    );
+                    case "sessions.ftl": return <Sessions {...{ kcContext, i18n, Template, classes }} doUseDefaultCss={true} />;
+                    
                     default: return <Fallback {...{ kcContext, i18n, classes }} Template={Template} doUseDefaultCss={true} />;
                 }
             })()}

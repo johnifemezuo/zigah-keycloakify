@@ -1,21 +1,23 @@
 import { createGetKcContext } from "keycloakify/account";
 
 export type KcContextExtension =
-	| { pageId: "my-extra-page-1.ftl"; }
-	| { pageId: "my-extra-page-2.ftl"; someCustomValue: string; };
+  | { pageId: "authenticator.ftl" }
+  | { pageId: "sessions.ftl"; someCustomValue: string };
 
 export const { getKcContext } = createGetKcContext<KcContextExtension>({
-	mockData: [
-		{
-			pageId: "my-extra-page-2.ftl",
-			someCustomValue: "foo bar"
-		}
-	]
+  mockData: [
+    {
+      pageId: "sessions.ftl",
+      someCustomValue: "foo bar",
+    },
+  ],
 });
 
 export const { kcContext } = getKcContext({
-//   mockPageId: "password.ftl",
-  mockPageId: "account.ftl",
+    // mockPageId: "password.ftl",
+    // mockPageId: "account.ftl",
+  mockPageId: "authenticator.ftl",
+  // mockPageId: "sessions.ftl",
 });
 
 export type KcContext = NonNullable<ReturnType<typeof getKcContext>["kcContext"]>;

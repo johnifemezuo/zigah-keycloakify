@@ -112,7 +112,7 @@ export default function Template(props: TemplateProps<KcContext, I18n>) {
                                 <a href={url.passwordUrl}>{msg("password")}</a>
                             </li>
                         )}
-                        <li className={clsx(active === "totp" && "active")}>
+                        <li className={clsx(active === "authenticator" && "my-active-link")}>
                             <a href={url.totpUrl}>{msg("authenticator")}</a>
                         </li>
                         {features.identityFederation && (
@@ -120,19 +120,19 @@ export default function Template(props: TemplateProps<KcContext, I18n>) {
                                 <a href={url.socialUrl}>{msg("federatedIdentity")}</a>
                             </li>
                         )}
-                        <li className={clsx(active === "sessions" && "active")}>
+                        <li className={clsx(active === "sessions" && "my-active-link")}>
                             <a href={url.sessionsUrl}>{msg("sessions")}</a>
                         </li>
-                        <li className={clsx(active === "applications" && "active")}>
+                        <li className={clsx(active === "applications" && "my-active-link")}>
                             <a href={url.applicationsUrl}>{msg("applications")}</a>
                         </li>
                         {features.log && (
-                            <li className={clsx(active === "log" && "active")}>
+                            <li className={clsx(active === "log" && "my-active-link")}>
                                 <a href={url.logUrl}>{msg("log")}</a>
                             </li>
                         )}
                         {realm.userManagedAccessAllowed && features.authorization && (
-                            <li className={clsx(active === "authorization" && "active")}>
+                            <li className={clsx(active === "authorization" && "my-active-link")}>
                                 <a href={url.resourceUrl}>{msg("myResources")}</a>
                             </li>
                         )}

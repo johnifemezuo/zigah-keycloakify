@@ -1,8 +1,8 @@
-import { clsx } from "keycloakify/tools/clsx";
-import type { PageProps } from "keycloakify/account/pages/PageProps";
 import { useGetClassName } from "keycloakify/account/lib/useGetClassName";
-import type { KcContext } from "../kcContext";
+import type { PageProps } from "keycloakify/account/pages/PageProps";
+import { clsx } from "keycloakify/tools/clsx";
 import type { I18n } from "../i18n";
+import type { KcContext } from "../kcContext";
 
 export default function Account(
   props: PageProps<Extract<KcContext, { pageId: "account.ftl" }>, I18n>
@@ -74,8 +74,53 @@ export default function Account(
               id="email"
               name="email"
               autoFocus
+              disabled={true}
               defaultValue={account.email ?? ""}
             />
+          </div>
+        </div>
+
+        <div className="my-flex-input">
+          <div className={clsx("", messagesPerField.printIfExists("email", "has-error"))}>
+            <div className="my-label-wrapper">
+              <label htmlFor="phoneNumber" className="my-label">
+                {msg("phoneNumber")}
+              </label>{" "}
+              <span className="required">*</span>
+            </div>
+
+            <div className="my-input-wrapper">
+              <input
+                type="text"
+                className="my-input"
+                id="phoneNumber"
+                name="phoneNumber"
+                autoFocus
+                disabled={true}
+                defaultValue={account.phoneNumber ?? ""}
+              />
+            </div>
+          </div>
+
+          <div className={clsx("", messagesPerField.printIfExists("email", "has-error"))}>
+            <div className="my-label-wrapper">
+              <label htmlFor="referralCode" className="my-label">
+                Referral
+              </label>
+              <span className="required">*</span>
+            </div>
+
+            <div className="my-input-wrapper">
+              <input
+                type="text"
+                className="my-input"
+                id="referralCode"
+                name="referralCode"
+                autoFocus
+                disabled={true}
+                defaultValue={account.referralCode ?? ""}
+              />
+            </div>
           </div>
         </div>
 
