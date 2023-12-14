@@ -1,6 +1,8 @@
-import { useGetClassName } from "keycloakify/account/lib/useGetClassName";
+/* eslint-disable jsx-a11y/alt-text */
 import type { PageProps } from "keycloakify/account/pages/PageProps";
 import { clsx } from "keycloakify/tools/clsx";
+import passwordSvg from "../assets/svgs/profileIcon.svg";
+import { Profile } from "../components/Profile";
 import type { I18n } from "../i18n";
 import type { KcContext } from "../kcContext";
 
@@ -9,32 +11,28 @@ export default function Account(
 ) {
   const { kcContext, i18n, doUseDefaultCss, Template, classes } = props;
 
-  const { getClassName } = useGetClassName({
-    doUseDefaultCss,
-    classes: {
-      ...classes,
-      kcBodyClass: clsx(classes?.kcBodyClass, "user"),
-    },
-  });
-
   const { url, realm, messagesPerField, stateChecker, account, referrer } = kcContext;
 
   const { msg } = i18n;
 
+
   return (
     <Template {...{ kcContext, i18n, doUseDefaultCss, classes }} active="account">
-      <div className="row">
-        <div className="col-md-10 my-page-title">
-          <h2>{msg("editAccountHtmlTitle")}</h2>
+      <div className="">
+        <div className="zigah-title-Container">
+          <div className=" zigah-title-wrapper">
+            <h2 className="my-page-title">Account Info</h2>
+            <p className="para">You can manage your account information here.</p>
+          </div>
+          <div className="w-[100px] h-12 text-3xl">
+            <img src={passwordSvg} className=" w-12 h-12" />
+          </div>
         </div>
-        <div className="col-md-2 subtitle">
-          <span className="subtitle">
-            <span className="required">*</span> {msg("requiredFields")}
-          </span>
-        </div>
+
+        <Profile account={account} />
       </div>
 
-      <form action={url.accountUrl} className="form-horizontal" method="post">
+      <form action={url.accountUrl} className="form-horizontal zigah-form-wrapper" method="post">
         <input type="hidden" id="stateChecker" name="stateChecker" value={stateChecker} />
 
         {!realm.registrationEmailAsUsername && (

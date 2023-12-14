@@ -1,5 +1,11 @@
-  @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap");
 
+:root {
+  --primary-color: #212e82;
+  --primary-colorTwo: #f3f5fe;
+  --text-color: #35343c;
+  --border-color: #e4e5ea;
+}
 /* 
 If you use global CSS like we do here(not recommended) 
 Be mindful that the CSS of the login theme may clash with the CSS of the account theme in Storybook (and only in storybook).
@@ -13,12 +19,17 @@ body {
   width: 100%;
 }
 
+.para {
+  font-size: 15px;
+  color: #35343c;
+}
+
 .my-root-account-class {
   background: white;
 }
 
 .bs-sidebar {
-  background-color: #f3f5fe;
+  background-color: var(--primary-colorTwo);
 }
 .my-button-ring {
   box-shadow: var(--tw-ring-inset) 0 0 0 calc(2px + var(--tw-ring-offset-width))
@@ -93,7 +104,7 @@ body {
 }
 
 .my-nav {
-  background-color: #f3f5fe;
+  background-color: var(--primary-colorTwo);
   padding: 5px 22px;
   display: flex;
   justify-content: space-between;
@@ -109,12 +120,25 @@ body {
 }
 
 .my-sidebar {
-  background-color: #f3f5fe;
-  padding: 15px;
+  background-color: var(--primary-colorTwo);
+  border-right: 1px solid var(--border-color);
+  color: #fff;
+  padding: 25px;
+  height: 100vh;
+  display: block;
 }
+
 .my-sidebar li a {
   border: none !important;
-  padding: 6px 0px;
+  padding: 12px 0px;
+}
+
+.my-sidebar ul li a {
+  font-size: 17px;
+}
+
+.my-sidebar ul li {
+  margin-top: 6px;
 }
 
 .my-nav-title {
@@ -126,7 +150,7 @@ body {
 }
 .my-nav-link {
   font-weight: 500;
-  color: #212e82;
+  color: var(--primary-color);
   font-size: 14px;
   margin-top: 0px;
   margin-left: 9px;
@@ -136,14 +160,84 @@ body {
   align-items: center;
 }
 
-.my-page-title h2 {
-  font-weight: 600;
-  color: #333;
-  font-size: 20px;
+/* ============== content styling ========= */
+.zigah-para {
+  font-size: 15px;
+  font-weight: 400;
+  color: var(--text-color);
+}
+.zigah-title-h2 {
+  font-weight: 500;
+  font-size: 16px;
+}
+.zigah-title-Container {
+  display: flex;
+  align-items: center;
+  padding: 12px 18px;
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  margin-bottom: 12px;
+  margin-top: 12px;
+  /* background-color: var(--primary-colorTwo); */
 }
 
+.my-page-title {
+  font-weight: 500;
+  color: var(--text-color);
+  font-size: 24px;
+}
+.zigah-title-wrapper {
+  align-items: center;
+  width: 100%;
+  justify-content: center;
+  padding: 12px 0px;
+}
 
-/* button styling */
+/* ============== Profile styling ========= */
+
+.zigah-profile-nav-wrapper {
+  border-bottom: 1px solid var(--border-color);
+  color: #333;
+  margin-top: -20px;
+}
+
+.zigah-profile-wrapper {
+  display: flex;
+  align-items: center;
+  margin-bottom: 12px;
+  margin-top: 30px;
+}
+.zigah-profile-title-wrapper {
+  margin-left: 12px;
+}
+.zigah-profile {
+  width: 55px;
+  height: 55px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 4px solid #c4c7e0;
+  background-color: #d2d5f7;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+.zigah-profile img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.zigah-profile-name {
+  font-size: 20px;
+  font-weight: 500;
+}
+.zigah-profile-email {
+  font-size: 14px;
+}
+
+/*====================== button styling============= */
 
 .my-button-primary {
   background-color: #212e82;
@@ -153,7 +247,6 @@ body {
   border-radius: 6px;
   width: 100%;
   font-size: 14px;
-  
 }
 .my-button-secondary {
   background-color: #f3f5fe;
@@ -171,7 +264,13 @@ body {
   width: 200px;
 }
 
-/* input styling */
+/*=============== input styling =============*/
+
+.zigah-form-wrapper {
+  border: 1px solid var(--border-color);
+  padding: 22px 25px;
+  border-radius: 12px;
+}
 
 .my-label {
   font-size: 13px;
@@ -201,17 +300,134 @@ body {
   border-color: #212e82;
 }
 
-@media (max-width: 767px) {
+/* ============== table styling ======= */
+tr {
+  background-color: #f8f8fa;
+  font-weight: 400;
+  font-size: 16px;
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+  margin-bottom: 22px;
+  margin-top: 24px;
+  border-radius: 12px;
+  overflow: hidden;
+}
+thead tr th {
+  background-color: var(--primary-colorTwo);
+  color: var(--text-color);
+  font-size: 14px;
+  font-weight: 500;
+  padding: 12px;
+}
+tbody tr td {
+  padding: 15px;
+}
+
+.my-td {
+  padding: 15px;
+  font-size: 15px;
+}
+
+.page-content {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.zigah-totp-step {
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+}
+.zigah-auth-container {
+  padding: 20px;
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  margin: 12px;
+  background-color: var(--primary-colorTwo);
+}
+
+.zigah-title-h3 {
+  padding: 0px 18px;
+}
+
+.close-icon {
+  display: none;
+}
+.my-logo-container {
+  display: flex;
+  align-items: center;
+}
+.menuIcon {
+  display: none;
+}
+/* ============== Responsiveness styling ======= */
+
+@media (max-width: 1024px) {
+  .zigah-form-wrapper {
+    margin-bottom: 20px;
+  }
   .my-flex-input {
     grid-template-columns: 1fr;
-    margin-top: 0px;
+    gap: 5px;
   }
-
+  .zigah-title-Container {
+    padding: 0 16px;
+  }
+  .my-page-title {
+    font-size: 20px;
+  }
   .my-logo {
     width: 90px;
   }
 
   .my-nav-title {
     display: none;
+  }
+
+  .my-sidebar {
+    position: absolute;
+    top: 0;
+    padding: 12px 20px;
+    width: 300px;
+  }
+
+  .page-content {
+    padding: 0;
+  }
+
+  .close-icon {
+    color: var(--primary-color);
+    display: block;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 600;
+    position: absolute;
+    right: 14px;
+  }
+
+  .menuIcon {
+    display: block;
+    margin-right: 7px;
+  }
+
+  .zigah-profile-name {
+    font-size: 16px;
+  }
+
+  .zigah-profile-email {
+    font-size: 12px;
+  }
+  .zigah-title-h2 {
+    font-size: 14px;
+  }
+  .zigah-para {
+    font-size: 12px;
+  }
+  .my-table-wrapper {
+    overflow: scroll;
+    max-width: 100%;
   }
 }

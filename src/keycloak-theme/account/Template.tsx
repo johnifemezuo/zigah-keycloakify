@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/alt-text */
 /* eslint-disable jsx-a11y/anchor-is-valid */
 // Copy pasted from: https://github.com/InseeFrLab/keycloakify/blob/main/src/login/Template.tsx
 
@@ -6,18 +7,22 @@ import { useGetClassName } from "keycloakify/account/lib/useGetClassName";
 import { usePrepareTemplate } from "keycloakify/lib/usePrepareTemplate";
 import { assert } from "keycloakify/tools/assert";
 import { clsx } from "keycloakify/tools/clsx";
-import { Logo } from "./assets/Logo";
+import { useState } from "react";
+import { Profile } from "./components/Profile";
+import { TopNav } from "./components/TopNav";
 import type { I18n } from "./i18n";
 import type { KcContext } from "./kcContext";
+import svgIcon from "./assets/svgs/closeIcon.svg";
 
 export default function Template(props: TemplateProps<KcContext, I18n>) {
     const { kcContext, i18n, doUseDefaultCss, active, classes, children } = props;
+  const [open, setOpen] = useState(true);
 
     const { getClassName } = useGetClassName({ doUseDefaultCss, classes });
 
     const { msg, changeLocale, labelBySupportedLanguageTag, currentLanguageTag } = i18n;
 
-    const { locale, url, features, realm, message, referrer } = kcContext;
+    const { locale, url, features, realm, message, referrer, account } = kcContext;
 
     const { isReady } = usePrepareTemplate({
         "doFetchDefaultThemeResources": doUseDefaultCss,
@@ -37,72 +42,18 @@ export default function Template(props: TemplateProps<KcContext, I18n>) {
     return (
         <>
             <header className="navbar navbar-default navbar-pf navbar-main header">
-                <div className="my-nav ">
-                    <Logo className="my-logo" />
+                <TopNav openSidebar={setOpen} url={url} msg={msg} referrer={referrer} />
+            </header> 
 
-                    <h1 className="my-nav-title">Manage Account</h1>
-                    <div className="my-nav-links">
-                        <a className="my-nav-link" href={url.getLogoutUrl()}>{msg("doSignOut")}</a>
-
-                        {referrer?.url && (
-                                    <li className="my-nav-link">
-                                        <a href={referrer.url} id="referrer">
-                                            {msg("backTo", referrer.name)}
-                                        </a>
-                                    </li>
-                                )}
+            <div className="contain">
+                <div className="bs-sidebar my-sidebar col-sm-2" style={{display: open ? "block" : "none"}}>
+                    <div onClick={() => setOpen(false)} className="close-icon">
+                        <img src={svgIcon}  />
                     </div>
-                </div>
 
-
-                {/* No longer in use */}
-                <nav style={{display: "none"}} className="navbar" role="navigation">
-                    <div className="navbar-header">
-                        <div className="container">
-                            <h1 className="navbar-title">Keycloak</h1>
-                        </div>
-                    </div>
-                    <div className="navbar-collapse navbar-collapse-1">
-                        <div className="container">
-                            <ul className="nav navbar-nav navbar-utility">
-                                {realm.internationalizationEnabled && (assert(locale !== undefined), true) && locale.supported.length > 1 && (
-                                    <li>
-                                        <div className="kc-dropdown" id="kc-locale-dropdown">
-                                            {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
-                                            <a href="#" id="kc-current-locale-link">
-                                                {labelBySupportedLanguageTag[currentLanguageTag]}
-                                            </a>
-                                            <ul>
-                                                {locale.supported.map(({ languageTag }) => (
-                                                    <li key={languageTag} className="kc-dropdown-item">
-                                                        {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
-                                                        <a href="#" onClick={() => changeLocale(languageTag)}>
-                                                            {labelBySupportedLanguageTag[languageTag]}
-                                                        </a>
-                                                    </li>
-                                                ))}
-                                            </ul>
-                                        </div>
-                                    </li>
-                                )}
-                                {referrer?.url && (
-                                    <li>
-                                        <a href={referrer.url} id="referrer">
-                                            {msg("backTo", referrer.name)}
-                                        </a>
-                                    </li>
-                                )}
-                                <li>
-                                    <a href={url.getLogoutUrl()}>{msg("doSignOut")}</a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </nav>
-            </header>
-
-            <div className="container">
-                <div className="bs-sidebar my-sidebar col-sm-3">
+                <div className="zigah-profile-nav-wrapper">
+                 <Profile account={account} />
+                </div>                
                     <ul>
                         <li className={clsx(active === "account" && "my-active-link")}>
                             <a href={url.accountUrl}>{msg("account")}</a>
@@ -112,7 +63,7 @@ export default function Template(props: TemplateProps<KcContext, I18n>) {
                                 <a href={url.passwordUrl}>{msg("password")}</a>
                             </li>
                         )}
-                        <li className={clsx(active === "authenticator" && "my-active-link")}>
+                        <li className={clsx(active === "totp" && "my-active-link")}>
                             <a href={url.totpUrl}>{msg("authenticator")}</a>
                         </li>
                         {features.identityFederation && (
@@ -139,7 +90,8 @@ export default function Template(props: TemplateProps<KcContext, I18n>) {
                     </ul>
                 </div>
 
-                <div className="col-sm-9 content-area">
+                <div className="col-sm-9">
+                    <div className="page-content">
                     {message !== undefined && (
                         <div className={clsx("alert", `alert-${message.type}`)}>
                             {message.type === "success" && <span className="pficon pficon-ok"></span>}
@@ -149,6 +101,7 @@ export default function Template(props: TemplateProps<KcContext, I18n>) {
                     )}
 
                     {children}
+                    </div>
                 </div>
             </div>
         </>

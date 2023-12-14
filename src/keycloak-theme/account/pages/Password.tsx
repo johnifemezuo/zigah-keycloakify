@@ -3,6 +3,7 @@ import type { PageProps } from "keycloakify/account/pages/PageProps";
 import { useGetClassName } from "keycloakify/account/lib/useGetClassName";
 import type { KcContext } from "../kcContext";
 import type { I18n } from "../i18n";
+import passwordSvg from "../assets/svgs/passwordIcon.svg";
 
 export default function LogoutConfirm(props: PageProps<Extract<KcContext, { pageId: "password.ftl" }>, I18n>) {
     const { kcContext, i18n, doUseDefaultCss, Template, classes } = props;
@@ -21,16 +22,18 @@ export default function LogoutConfirm(props: PageProps<Extract<KcContext, { page
 
     return (
       <Template {...{ kcContext, i18n, doUseDefaultCss, classes }} active="password">
-        <div className="row flex--items">
-          <div className="col-md-10 my-page-title">
-            <h2 className="">{msg("changePasswordHtmlTitle")}</h2>
+        <div className="zigah-title-Container">
+          <div className=" zigah-title-wrapper">
+            <h2 className="my-page-title">Update Password Info</h2>
+            <p className="para">You can manage your account password changes here.</p>
           </div>
-          <div className="">
-            <span className="my-label">{msg("allFieldsRequired")}</span>
+
+          <div className="w-[100px] h-12 text-3xl">
+            <img src={passwordSvg} className="max-w-sm"/>
           </div>
         </div>
 
-        <form action={url.passwordUrl} className="form-horizontal" method="post">
+        <form action={url.passwordUrl} className="form-horizonta zigah-form-wrapper" method="post">
           <input
             type="text"
             id="username"
