@@ -41,6 +41,7 @@ export type KcContextExtension =
           additionalGrants: any[];
           effectiveUrl: string;
           client: {
+            inUse: boolean;
             name: string;
             clientId: string;
             consentRequired: boolean;
@@ -115,8 +116,8 @@ export const { getKcContext } = createGetKcContext<KcContextExtension>({
 });
 
 export const { kcContext } = getKcContext({
-  // mockPageId: "password.ftl",
   // mockPageId: "account.ftl",
+  // mockPageId: "password.ftl",
   // mockPageId: "totp.ftl",
   mockPageId: "applications.ftl",
   // mockPageId: "sessions.ftl",

@@ -126,6 +126,8 @@ body {
   padding: 25px;
   height: 100vh;
   display: block;
+    width: 400px;
+
 }
 
 .my-sidebar li a {
@@ -332,14 +334,28 @@ tbody tr td {
 }
 
 .page-content {
-  max-width: 1000px;
+  padding: 100px 0px;
   margin: 0 auto;
-  padding: 20px;
+  width: 100%;
+  height: 100vh;
+  overflow-y: auto;
+}
+.page-container {
+  margin: 0 auto;
+  max-width: 1000px;
+}
+.my-navbar {
+  position: fixed;
+  width: 100%;
+  z-index: 50;
 }
 
 .zigah-totp-step {
   border: 1px solid var(--border-color);
   border-radius: 12px;
+}
+.layout {
+  display: flex;
 }
 .zigah-auth-container {
   padding: 20px;
@@ -395,7 +411,7 @@ tbody tr td {
   }
 
   .page-content {
-    padding: 0;
+    padding: 80px 22px 30px 22px;
   }
 
   .close-icon {

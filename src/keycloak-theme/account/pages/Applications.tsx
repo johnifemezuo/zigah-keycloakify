@@ -10,10 +10,8 @@ export default function Applications(
 ) {
   const { kcContext, i18n, doUseDefaultCss, Template, classes } = props;
 
-  const { url, stateChecker, applications, advancedMsg } = kcContext;
+  const { url, stateChecker, applications } = kcContext;
   const { msg } = i18n;
-
-  console.log(applications);
 
   return (
     <Template {...{ kcContext, i18n, doUseDefaultCss, classes }} active="applications">
@@ -44,35 +42,15 @@ export default function Applications(
             {applications?.applications.map((application, i) => (
               <tr className="my-td" key={i}>
                 <td>
-                  {application.effectiveUrl && (
-                    <a href={application.effectiveUrl}>
-                      {application.client.name
-                        ? advancedMsg(application.client.name)
-                        : application.client.clientId}
-                    </a>
-                  )}
+                  {application.client.clientId}
                 </td>
 
                 <td>
-                  {application?.client.consentRequired ? (
-                    application.clientScopesGranted.map((claim: any, index: any) => (
-                      <React.Fragment key={index}>
-                        {advancedMsg(claim)}
-                        {index < application.clientScopesGranted.length - 1 && ", "}
-                      </React.Fragment>
-                    ))
-                  ) : (
-                    <strong>{msg("fullAccess")}</strong>
-                  )}
+                  {application?.client.consentRequired ? "Third party app" : "Internal"}
                 </td>
 
                 <td>
-                  {application.additionalGrants.map((grant: any, index: any) => (
-                    <React.Fragment key={index}>
-                      {advancedMsg(grant)}
-                      {index < application.additionalGrants.length - 1 && ", "}
-                    </React.Fragment>
-                  ))}
+                  {application.client.inUse ? "In Use": "Not In Use"}
                 </td>
               </tr>
             ))}

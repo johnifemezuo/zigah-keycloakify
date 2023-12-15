@@ -41,17 +41,18 @@ export default function Template(props: TemplateProps<KcContext, I18n>) {
 
     return (
         <>
-            <header className="navbar navbar-default navbar-pf navbar-main header">
-                <TopNav openSidebar={setOpen} url={url} msg={msg} referrer={referrer} />
+            <header className="navbar navbar-default navbar-pf navbar-main header my-navbar">
+                <TopNav open={open} openSidebar={setOpen} url={url} msg={msg} referrer={referrer} />
             </header> 
 
-            <div className="contain">
+            <div className="layout">
                 <div className="bs-sidebar my-sidebar col-sm-2" style={{display: open ? "block" : "none"}}>
                     <div onClick={() => setOpen(false)} className="close-icon">
                         <img src={svgIcon}  />
                     </div>
 
-                <div className="zigah-profile-nav-wrapper">
+                    <div className="zigah-profile-nav-wrapper">
+                        <div style={{paddingTop: "70px"}} />
                  <Profile account={account} />
                 </div>                
                     <ul>
@@ -90,7 +91,6 @@ export default function Template(props: TemplateProps<KcContext, I18n>) {
                     </ul>
                 </div>
 
-                <div className="col-sm-9">
                     <div className="page-content">
                     {message !== undefined && (
                         <div className={clsx("alert", `alert-${message.type}`)}>
@@ -100,9 +100,11 @@ export default function Template(props: TemplateProps<KcContext, I18n>) {
                         </div>
                     )}
 
-                    {children}
+                        <div className="page-container">
+
+                        {children}
+                        </div>
                     </div>
-                </div>
             </div>
         </>
     );

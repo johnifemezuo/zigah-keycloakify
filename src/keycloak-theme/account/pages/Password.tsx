@@ -29,9 +29,13 @@ export default function LogoutConfirm(props: PageProps<Extract<KcContext, { page
           </div>
 
           <div className="w-[100px] h-12 text-3xl">
-            <img src={passwordSvg} className="max-w-sm"/>
+            <img src={passwordSvg} className="max-w-sm" />
           </div>
         </div>
+
+        
+
+        <h2 className="zigah-title-h2">Change password</h2>
 
         <form action={url.passwordUrl} className="form-horizonta zigah-form-wrapper" method="post">
           <input
